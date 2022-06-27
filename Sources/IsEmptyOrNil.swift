@@ -16,9 +16,21 @@ public enum IsEmptyOrNilResult: ExpressibleByBooleanLiteral {
 	case `true`
 	case `false`
 	
+	public var boolValue: Bool {
+		switch self {
+			case .true: return true
+			case .false: return false
+		}
+	}
+	
 	public init(booleanLiteral value: BooleanLiteralType) {
 		self = value ? .true : .false
 	}
+}
+
+/// helper to convert to boolean
+public extension Optional where Wrapped == IsEmptyOrNilResult {
+	var boolValue: Bool { self?.boolValue ?? true }
 }
 
 /// We've added an extension on Optional<Collection> so
@@ -37,15 +49,5 @@ public extension Collection {
 
 /// comparison function:  `nil` is seen as true, since it's nil :)
 public func == (lhs: IsEmptyOrNilResult?, rhs: IsEmptyOrNilResult?) -> Bool {
-	return (lhs?.isTrue ?? true) == (rhs?.isTrue ?? true)
-}
-
-/// helper for operator ==
-fileprivate extension IsEmptyOrNilResult {
-	var isTrue: Bool {
-		switch self {
-			case .true: return true
-			case .false: return false
-		}
-	}
+	return lhs.boolValue == rhs.boolValue
 }

@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-    s.name             = 'DHash'
+    s.name             = 'AveSwiftHelpers'
     s.version          = '1.0.0'
     s.summary          = 'A collection of common swift helpers'
     s.homepage         = 'https://github.com/AndreasVerhoeven/AveSwiftHelpers'
