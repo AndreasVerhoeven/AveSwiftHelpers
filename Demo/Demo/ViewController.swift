@@ -60,6 +60,9 @@ class ViewController: UITableViewController {
 		if nilItem?.nilSub?.emptyString.isEmptyOrNil == true { assert(true) } else { assert(false) }
 		if nilItem?.nilSub?.nilString.isEmptyOrNil == true { assert(true) } else { assert(false) }
 		
+		var x = [0, 1, 2]
+		x.replaceFirst(having: \.self, as: 1, with: 5)
+		print(x)
 	}
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
